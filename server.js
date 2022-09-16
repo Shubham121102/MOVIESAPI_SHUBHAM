@@ -40,7 +40,7 @@ require('dotenv').config();
 
 
 
-app.get("/api/Movies", (req, res) => {
+app.get("/api/movies", (req, res) => {
     db.getAllMovies(req.query.page, req.query.perPage, req.query.title)
         .then((Movies) => {
             res.status(201).json(Movies);
@@ -49,7 +49,7 @@ app.get("/api/Movies", (req, res) => {
             res.status(500).json(err);
         });
 });
-app.post("/api/Movies", (req, res) => {
+app.post("/api/movies", (req, res) => {
     db.addNewMovie(req.body)
         .then(() => {
             res.status(201).json(`Successfully added the new movie`);
@@ -59,7 +59,7 @@ app.post("/api/Movies", (req, res) => {
         });
 });
 
-app.get("/api/Movies/:id", (req, res) => {
+app.get("/api/movies/:id", (req, res) => {
     db.getMovieById(req.params.id)
         .then((Movies) => {
             res.status(201).json(Movies);
@@ -69,7 +69,7 @@ app.get("/api/Movies/:id", (req, res) => {
         });
 });
 
-app.put("/api/Movies/:id", (req, res) => {
+app.put("/api/movies/:id", (req, res) => {
     db.updateMovieById(req.body, req.params.id)
         .then(() => {
             res.status(201).json(`Movie ${req.body._id} updated successfully`);
@@ -79,7 +79,7 @@ app.put("/api/Movies/:id", (req, res) => {
         });
 });
 
-app.delete("/api/Movies/:id", (req, res) => {
+app.delete("/api/movies/:id", (req, res) => {
     db.deleteMovieById(req.params.id)
         .then(() => {
             res.status(201).json(`Movie ${req.params.id} deleted successfully`);
